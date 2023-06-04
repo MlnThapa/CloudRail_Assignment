@@ -76,7 +76,14 @@ app.post('/data',async (req,res)=>{
   res.status(201).json({
     name : data.name
   })
+  //consolelog id
+  console.log(data._id.toString())
 
+})
+
+app.delete('/data/:id',async(req,res)=>{
+  const idDel = req.params.id
+  await user.findOneAndDelete({_id:idDel}).then(()=>res.status(201).json({msg:"Del"}))
 })
 
 mongoose.connect(process.env.MONGO_URI)
